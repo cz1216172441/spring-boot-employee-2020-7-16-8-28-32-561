@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -42,7 +43,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void deleteEmployeeById(int id) {
         Employee employee = getEmployee(id);
-        employees.remove(employee);
+        if (Objects.nonNull(employee)) {
+            employees.remove(employee);
+        }
     }
 
     @Override

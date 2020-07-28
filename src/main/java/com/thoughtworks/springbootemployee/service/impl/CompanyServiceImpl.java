@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class CompanyServiceImpl implements CompanyService {
@@ -40,7 +41,7 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public List<Employee> getCompanyEmployees(int id) {
         Company company = getCompany(id);
-        if (company != null) {
+        if (Objects.nonNull(company)) {
             return company.getEmployees();
         }
         return null;
@@ -49,7 +50,9 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public void deleteCompanyById(int id) {
         Company company = getCompany(id);
-        companies.remove(company);
+        if (Objects.nonNull(company)) {
+            companies.remove(company);
+        }
     }
 
     @Override
