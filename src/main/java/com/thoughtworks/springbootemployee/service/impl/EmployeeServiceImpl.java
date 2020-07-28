@@ -8,9 +8,19 @@ import java.util.ArrayList;
 import java.util.List;
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-    private List<Employee> employees=new ArrayList<>();
+
+    private final List<Employee> employees=new ArrayList<>();
+
     @Override
     public List<Employee> getEmployees() {
         return employees;
+    }
+
+    @Override
+    public Employee getEmployee(int id) {
+        return employees.stream()
+                .filter(employee -> id == employee.getId())
+                .findFirst()
+                .orElse(null);
     }
 }

@@ -15,8 +15,14 @@ import java.util.List;
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
+
     @GetMapping()
     public List<Employee> getEmployees() {
         return employeeService.getEmployees();
+    }
+
+    @GetMapping("/{id}")
+    public Employee getEmployee(@PathVariable int id) {
+        return employeeService.getEmployee(id);
     }
 }
