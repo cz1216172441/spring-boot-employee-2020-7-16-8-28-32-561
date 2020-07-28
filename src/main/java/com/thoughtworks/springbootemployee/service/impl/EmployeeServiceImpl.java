@@ -52,4 +52,12 @@ public class EmployeeServiceImpl implements EmployeeService {
         deleteEmployeeById(employee.getId());
         addEmployee(employee);
     }
+
+    @Override
+    public List<Employee> getEmployees(Integer page, Integer pageSize) {
+        return employees.stream()
+                .skip(pageSize * (page - 1))
+                .limit(5)
+                .collect(Collectors.toList());
+    }
 }

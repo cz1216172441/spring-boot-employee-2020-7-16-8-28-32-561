@@ -13,9 +13,14 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @GetMapping("/employees")
-    public List<Employee> getEmployees(@RequestParam(required = false) String gender) {
+    public List<Employee> getEmployees(@RequestParam(required = false) String gender,
+                                       @RequestParam(required = false) Integer page,
+                                       @RequestParam(required = false) Integer pageSize) {
         if (gender != null) {
             return employeeService.getEmployeesByGender(gender);
+        }
+        if (page != null && pageSize != null && page > 0) {
+            return employeeService.getEmployees(page, pageSize);
         }
         return employeeService.getEmployees();
     }
@@ -39,4 +44,5 @@ public class EmployeeController {
     public void modifyEmployeeById(Employee employee) {
         employeeService.modifyEmployee(employee);
     }
+
 }
