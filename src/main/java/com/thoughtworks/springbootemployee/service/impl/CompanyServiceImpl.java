@@ -18,4 +18,12 @@ public class CompanyServiceImpl implements CompanyService {
     public void addCompany(Company company) {
         companies.add(company);
     }
+
+    @Override
+    public Company getCompany(int id) {
+        return companies.stream()
+                .filter(company -> id == company.getId())
+                .findFirst()
+                .orElse(null);
+    }
 }
