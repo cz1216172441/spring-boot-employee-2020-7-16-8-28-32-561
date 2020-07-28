@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 public class CompanyController {
@@ -15,7 +16,11 @@ public class CompanyController {
     private CompanyService companyService;
 
     @GetMapping("/companies")
-    public List<Company> getCompanies() {
+    public List<Company> getCompanies(@RequestParam(required = false) Integer page,
+                                      @RequestParam(required = false) Integer pageSize) {
+        if (Objects.nonNull(page) && Objects.nonNull(pageSize)) {
+            return companyService.getCompanies(page, pageSize);
+        }
         return companyService.getCompanies();
     }
 
@@ -38,10 +43,10 @@ public class CompanyController {
     public void deleteCompanyById(@PathVariable("id") int id) {
         companyService.deleteCompanyById(id);
     }
+
     @PutMapping("/companies")
     public void modifyCompany(Company company) {
-        companyService. modifyCompany(company);
+        companyService.modifyCompany(company);
     }
-
 
 }

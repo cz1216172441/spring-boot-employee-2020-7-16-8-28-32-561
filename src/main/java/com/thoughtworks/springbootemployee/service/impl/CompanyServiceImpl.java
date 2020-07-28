@@ -3,16 +3,29 @@ package com.thoughtworks.springbootemployee.service.impl;
 import com.thoughtworks.springbootemployee.entity.Company;
 import com.thoughtworks.springbootemployee.entity.Employee;
 import com.thoughtworks.springbootemployee.service.CompanyService;
+import com.thoughtworks.springbootemployee.util.PagingUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Service
 public class CompanyServiceImpl implements CompanyService {
-    private final List<Company> companies=new ArrayList<>();
+
+    private final List<Company> companies = new ArrayList<>();
+
     @Override
     public List<Company> getCompanies() {
         return companies;
+    }
+
+    @Override
+    public List<Company> getCompanies(Integer page, Integer pageSize) {
+        if (!PagingUtils.isPagingParamsValid(page, pageSize)) {
+            page = 1;
+            pageSize = 0;
+        }
+        return PagingUtils.paging(companies, page, pageSize);
     }
 
     @Override
@@ -39,7 +52,7 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public void deleteCompanyById(int id) {
-        Company company= companies.stream()
+        Company company = companies.stream()
                 .filter(item -> id == item.getId())
                 .findFirst()
                 .orElse(null);
@@ -51,4 +64,5 @@ public class CompanyServiceImpl implements CompanyService {
         deleteCompanyById(company.getId());
         addCompany(company);
     }
+
 }

@@ -6,7 +6,10 @@ import com.thoughtworks.springbootemployee.entity.Employee;
 import java.util.List;
 
 public interface CompanyService {
+
     List<Company> getCompanies();
+
+    List<Company> getCompanies(Integer page, Integer pageSize);
 
     void addCompany(Company company);
 
@@ -17,4 +20,5 @@ public interface CompanyService {
     void deleteCompanyById(int id);
 
     void modifyCompany(Company company);
+
 }
