@@ -1,6 +1,7 @@
 package com.thoughtworks.springbootemployee.service.impl;
 
 import com.thoughtworks.springbootemployee.entity.Company;
+import com.thoughtworks.springbootemployee.entity.Employee;
 import com.thoughtworks.springbootemployee.service.CompanyService;
 import org.springframework.stereotype.Service;
 
@@ -25,5 +26,14 @@ public class CompanyServiceImpl implements CompanyService {
                 .filter(company -> id == company.getId())
                 .findFirst()
                 .orElse(null);
+    }
+
+    @Override
+    public List<Employee> getCompanyEmployees(int id) {
+        Company company = getCompany(id);
+        if (company != null) {
+            return company.getEmployees();
+        }
+        return null;
     }
 }
