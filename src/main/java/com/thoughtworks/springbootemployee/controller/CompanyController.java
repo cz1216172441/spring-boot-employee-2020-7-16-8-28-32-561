@@ -4,10 +4,7 @@ import com.thoughtworks.springbootemployee.entity.Company;
 import com.thoughtworks.springbootemployee.entity.Employee;
 import com.thoughtworks.springbootemployee.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,5 +33,15 @@ public class CompanyController {
     public List<Employee> getCompanyEmployees(@PathVariable("id") int id) {
         return companyService.getCompanyEmployees(id);
     }
+
+    @DeleteMapping("/companies/{id}")
+    public void deleteCompanyById(@PathVariable("id") int id) {
+        companyService.deleteCompanyById(id);
+    }
+    @PutMapping("/companies")
+    public void modifyCompany(Company company) {
+        companyService. modifyCompany(company);
+    }
+
 
 }

@@ -13,4 +13,8 @@ public interface CompanyService {
     Company getCompany(int id);
 
     List<Employee> getCompanyEmployees(int id);
+
+    void deleteCompanyById(int id);
+
+    void modifyCompany(Company company);
 }

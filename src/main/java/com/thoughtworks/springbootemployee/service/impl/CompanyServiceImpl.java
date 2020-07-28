@@ -36,4 +36,19 @@ public class CompanyServiceImpl implements CompanyService {
         }
         return null;
     }
+
+    @Override
+    public void deleteCompanyById(int id) {
+        Company company= companies.stream()
+                .filter(item -> id == item.getId())
+                .findFirst()
+                .orElse(null);
+        companies.remove(company);
+    }
+
+    @Override
+    public void modifyCompany(Company company) {
+        deleteCompanyById(company.getId());
+        addCompany(company);
+    }
 }
