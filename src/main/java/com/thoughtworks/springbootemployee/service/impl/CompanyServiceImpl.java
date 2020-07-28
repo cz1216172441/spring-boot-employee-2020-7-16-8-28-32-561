@@ -52,10 +52,7 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public void deleteCompanyById(int id) {
-        Company company = companies.stream()
-                .filter(item -> id == item.getId())
-                .findFirst()
-                .orElse(null);
+        Company company = getCompany(id);
         companies.remove(company);
     }
 

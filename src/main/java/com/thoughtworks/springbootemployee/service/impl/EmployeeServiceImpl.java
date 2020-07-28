@@ -40,10 +40,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void deleteEmployeeById(int id) {
-        Employee employee = employees.stream()
-                .filter(item -> id == item.getId())
-                .findFirst()
-                .orElse(null);
+        Employee employee = getEmployee(id);
         employees.remove(employee);
     }
 

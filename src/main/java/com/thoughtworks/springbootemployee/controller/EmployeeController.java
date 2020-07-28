@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 public class EmployeeController {
+
     @Autowired
     private EmployeeService employeeService;
 
@@ -19,7 +21,7 @@ public class EmployeeController {
         if (gender != null) {
             return employeeService.getEmployeesByGender(gender);
         }
-        if (page != null && pageSize != null && page > 0) {
+        if (Objects.nonNull(page) && Objects.nonNull(pageSize)) {
             return employeeService.getEmployees(page, pageSize);
         }
         return employeeService.getEmployees();
