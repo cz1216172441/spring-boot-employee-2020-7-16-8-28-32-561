@@ -21,10 +21,6 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public List<Company> getCompanies(Integer page, Integer pageSize) {
-        if (!PagingUtils.isPagingParamsValid(page, pageSize)) {
-            page = 1;
-            pageSize = 0;
-        }
         return PagingUtils.paging(companies, page, pageSize);
     }
 

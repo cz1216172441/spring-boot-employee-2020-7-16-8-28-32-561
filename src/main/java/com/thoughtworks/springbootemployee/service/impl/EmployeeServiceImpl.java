@@ -2,6 +2,7 @@ package com.thoughtworks.springbootemployee.service.impl;
 
 import com.thoughtworks.springbootemployee.entity.Employee;
 import com.thoughtworks.springbootemployee.service.EmployeeService;
+import com.thoughtworks.springbootemployee.util.PagingUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.stream.Collectors;
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private final List<Employee> employees=new ArrayList<>();
+    private final List<Employee> employees = new ArrayList<>();
 
     @Override
     public List<Employee> getEmployees() {
@@ -52,9 +53,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<Employee> getEmployees(Integer page, Integer pageSize) {
-        return employees.stream()
-                .skip(pageSize * (page - 1))
-                .limit(5)
-                .collect(Collectors.toList());
+        return PagingUtils.paging(employees, page, pageSize);
     }
 }
