@@ -37,4 +37,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void addEmployee(Employee employee) {
         employees.add(employee);
     }
+
+    @Override
+    public void deleteEmployeeById(int id) {
+        Employee employee = employees.stream()
+                .filter(item -> id == item.getId())
+                .findFirst()
+                .orElse(null);
+        employees.remove(employee);
+    }
 }

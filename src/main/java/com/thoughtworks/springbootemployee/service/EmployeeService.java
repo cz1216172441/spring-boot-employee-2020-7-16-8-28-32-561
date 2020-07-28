@@ -12,4 +12,6 @@ public interface EmployeeService {
     List<Employee> getEmployeesByGender(String gender);
 
     void addEmployee(Employee employee);
+
+    void deleteEmployeeById(int id);
 }
