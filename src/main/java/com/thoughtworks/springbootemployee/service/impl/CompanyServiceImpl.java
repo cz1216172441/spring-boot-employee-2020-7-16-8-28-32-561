@@ -48,16 +48,16 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public void deleteCompanyById(int id) {
+    public void deleteCompanyEmployeesById(int id) {
         Company company = getCompany(id);
         if (Objects.nonNull(company)) {
-            companies.remove(company);
+            company.getEmployees().clear();
         }
     }
 
     @Override
     public void modifyCompany(Company company) {
-        deleteCompanyById(company.getId());
+        deleteCompanyEmployeesById(company.getId());
         addCompany(company);
     }
 
