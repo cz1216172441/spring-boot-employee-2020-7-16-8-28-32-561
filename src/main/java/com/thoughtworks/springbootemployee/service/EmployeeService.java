@@ -10,4 +10,6 @@ public interface EmployeeService {
     Employee getEmployee(int id);
 
     List<Employee> getEmployeesByGender(String gender);
+
+    void addEmployee(Employee employee);
 }

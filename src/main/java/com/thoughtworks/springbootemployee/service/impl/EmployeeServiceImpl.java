@@ -32,4 +32,9 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .filter(employee -> gender.equals(employee.getGender()))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public void addEmployee(Employee employee) {
+        employees.add(employee);
+    }
 }
