@@ -46,4 +46,10 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .orElse(null);
         employees.remove(employee);
     }
+
+    @Override
+    public void modifyEmployee(Employee employee) {
+        deleteEmployeeById(employee.getId());
+        addEmployee(employee);
+    }
 }

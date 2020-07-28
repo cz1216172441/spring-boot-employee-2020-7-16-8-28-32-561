@@ -14,4 +14,6 @@ public interface EmployeeService {
     void addEmployee(Employee employee);
 
     void deleteEmployeeById(int id);
+
+    void modifyEmployee(Employee employee);
 }

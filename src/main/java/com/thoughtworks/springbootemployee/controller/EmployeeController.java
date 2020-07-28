@@ -34,4 +34,9 @@ public class EmployeeController {
     public void deleteEmployeeById(@PathVariable("id") int id) {
         employeeService.deleteEmployeeById(id);
     }
+
+    @PutMapping("/employees")
+    public void modifyEmployeeById(Employee employee) {
+        employeeService.modifyEmployee(employee);
+    }
 }
