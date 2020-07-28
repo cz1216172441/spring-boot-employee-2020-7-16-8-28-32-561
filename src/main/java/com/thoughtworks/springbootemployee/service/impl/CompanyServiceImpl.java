@@ -13,4 +13,9 @@ public class CompanyServiceImpl implements CompanyService {
     public List<Company> getCompanies() {
         return companies;
     }
+
+    @Override
+    public void addCompany(Company company) {
+        companies.add(company);
+    }
 }
